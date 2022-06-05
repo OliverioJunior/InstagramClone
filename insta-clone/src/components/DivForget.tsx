@@ -5,6 +5,7 @@ export default function DivForget(){
         display: flex;
         width: 80%;
         height: 50px;
+        background-color: #fff;
         border: 1px solid rgb(219,219,219);
        span{
             margin:auto;

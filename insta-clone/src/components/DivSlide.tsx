@@ -12,7 +12,7 @@ export default function DivSlide(prop: Props) {
     const Div = styled.div`
     width: 50%;
     height: 100%;
-    border: 1px solid black;
+   
     background: url(${Celphone}), 468.32px 634.15px;
     background-repeat:no-repeat;
     background-position:center; 
@@ -21,7 +21,7 @@ export default function DivSlide(prop: Props) {
     const DivSlider = styled.div`
         width: 54%;
         height: 83%;
-        border: 1px solid black;
+      
         position: relative;
         top: 36px;
         left: 156px;

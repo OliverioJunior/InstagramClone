@@ -10,7 +10,7 @@ export default function CenterDiv(prop: Props) {
         align-items: center;
         height: 90%;
         width: 935px;
-        border: 1px solid black;
+      
 
         `
     return <CenterDivStyled>{children}</CenterDivStyled>;
