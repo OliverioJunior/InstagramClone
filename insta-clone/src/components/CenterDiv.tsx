@@ -9,7 +9,8 @@ export default function CenterDiv(prop: Props) {
         justify-content: center;
         align-items: center;
         height: 90%;
-        width: 935px;
+        max-width: 935px;
+    
       
 
         `

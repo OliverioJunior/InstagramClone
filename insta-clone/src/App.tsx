@@ -22,11 +22,8 @@ function App() {
   return (
     <Div className="App">
       <CenterDiv>
-        <DivSlide>
-        </DivSlide>
-        <DivForm/>
+          <DivForm/>
       </CenterDiv>
-      
     </Div>
         
      

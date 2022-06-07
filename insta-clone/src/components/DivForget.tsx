@@ -3,7 +3,7 @@ import styled from "styled-components";
 export default function DivForget(){
     const DivForgetStyled = styled.div`
         display: flex;
-        width: 80%;
+        width: 100%;
         height: 50px;
         background-color: #fff;
         border: 1px solid rgb(219,219,219);
