@@ -1,4 +1,4 @@
-import React,{ useRef , useEffect} from "react";
+import React,{ useRef , useEffect , useState} from "react";
 import Insta from '../../src/imgs/Insta.png'
 import getInOn from '../../src/imgs/getInOn.png'
 import AppStore from '../../src/imgs/AppStore.png'
@@ -26,6 +26,7 @@ export default function DivForm(prop: Props){
         justify-content: center;
         max-width: 350px;
         background: white;
+        border-radius:3px;
         border: 1px solid #dbdbdb;
     `
     const DivImgInsta = styled.div`
@@ -53,27 +54,32 @@ export default function DivForm(prop: Props){
             justify-content:center;
             align-items: center;
             flex-wrap: wrap;
-            padding: 0px 15px;
+            
+            height: max-content;
         }
         span{
             position: relative;
             left: -90px;
             top: 30px;
-            color:#000;
-            background: rgb(245,245,245);
+            color:#9b9797;
+            background: rgb(248,248,248);
             border-radius: 5px;
             padding: 0px 5px;
+            
         }
 
     `
     const Input = styled.input`
         height: 38px;
-        background: rgb(245,245,245);
+        background: rgb(248,248,248);
         border: 1px solid #dbdbdb;
         color: #000;
         border-radius: 3px;
         padding: 0 10px;
-        flex-basis: 100%;
+        flex-basis: 96%;
+        animation-duration: 4s;
+            animation-delay:2;
+            animation-timing-function: linear;
     `
     const Button = styled.button`
         width: 100%;
@@ -107,20 +113,21 @@ export default function DivForm(prop: Props){
         height:40px;
     `
     const DivOutCont = styled.div`
-        
-        flex-basis: 33%;
         display: flex;
-        border: 1px solid #000;
+        border: 1px solid #dbdbdb;
+        border-radius:3px;
         justify-content: center;
         align-items: center;
         background: white;
+        margin-top: 10px;
+        height:80px;
     `
     const ContainerAppStore = styled.div`
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        flex-basis: 100%;
+        height:100px;
     `
     const DivGet = styled.div`
         display: flex;
@@ -139,7 +146,54 @@ export default function DivForm(prop: Props){
 
         }
     `
-    
+    const userRef = useRef<HTMLInputElement>(null)
+    const passRef = useRef<HTMLInputElement>(null)
+    const spanUserRef = useRef<HTMLSpanElement>(null)
+    const spanPassRef = useRef<HTMLSpanElement>(null)
+    const buttonRef = useRef<HTMLButtonElement>(null)
+    const [input, setInput] = useState("")    
+    useEffect(()=>{
+        const user = userRef.current as HTMLInputElement;
+        const pass = passRef.current as HTMLInputElement;
+        const spanUser = spanUserRef.current as HTMLSpanElement;
+        const spanPass = spanPassRef.current as HTMLSpanElement;
+        const button = buttonRef.current as HTMLButtonElement;
+        const buttonValid = ()=>{
+            if(user.value && pass.value.length > 6){
+                button.style.background = "#0095f6";
+            } else {
+                button.style.background = "#B2DFFC";
+            }
+        }
+        user?.addEventListener("focus",()=>{    
+            spanUser.style.top = "11px"
+        })
+        user?.addEventListener("blur",()=>{
+            if(user.value){
+                spanUser.style.top = "11px"
+            }else{
+                spanUser.style.top = "30px"
+            }
+         
+       })
+        pass?.addEventListener("focus",()=>{    
+            spanPass.style.top = "11px"
+        })
+        pass?.addEventListener("blur",()=>{
+            if(pass.value){
+                spanPass.style.top = "11px"
+            }else{
+                spanPass.style.top = "30px"
+            }
+      
+        })
+        pass?.addEventListener("change",(e)=>{
+            buttonValid() 
+     
+        })
+        
+
+    })
      
     return (
         <DivFormStyled>
@@ -147,15 +201,23 @@ export default function DivForm(prop: Props){
                 <DivImgInsta/>
                 <DivContainerInput>
                     <div>
-                        <span>UserName</span>
-                        <Input type="text"/>
+                        <span ref={spanUserRef}>UserName</span>
+                        <Input 
+                        ref={userRef}
+                        type="text"
+                        value={input}
+                        onChange={(e)=>{
+                            setInput(e.target.value)
+                            console.log(input)
+                        }}
+                        />
                     </div>
                     <div>
-                        <span>Password</span>
-                        <Input type="password" placeholder="Password"/>
+                        <span ref={spanPassRef}>Password</span>
+                        <Input ref={passRef} type="password"/>
                     </div>
                     <div>
-                    <Button>Log In</Button>
+                    <Button ref={buttonRef} >Log In</Button>
                     </div>
                 </DivContainerInput>
                     <ContainerDivLine>
